@@ -19,9 +19,21 @@ pages = FlatPages(app)
 FLATPAGES_EXTENSION = '.md'
 freezer = Freezer(app)
 
+
 @app.route('/')
 def index():
     return render_template('index.html', index=pages.get("index"))
+
+
+@app.route('/blog')
+def blog():
+	########
+	posts = []
+	for page in set(pages):
+		if page.path.startswith('post'):
+			posts.append(page)
+	########
+	return render_template('blog.html', page=pages.get("blog"), posts=posts)
 
 @app.route('/<path:path>/')
 def post(path):

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+	{{page.title}}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<style type="text/css">
+		.card{
+			background: #223b55!important;
+		}
+
+		.card > a:hover {
+		    color: unset;
+		    text-decoration: none;
+		    background: #ef7b8e;
+		}
+		.card > a {
+			color: white;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+<!-- {{ 	page }}
+{{ page.resumo  }} -->
+<div id="posts">
+	{% for post in posts %}
+	<div class="card mb-3">
+		<a href="{{post.path}}">
+		<div class="card-body">
+			<h4 class="card-title">{{post.title}}</h4>
+			<p class="card-text">{{post}}</p>
+    		<p class="card-text">
+    			<small class="text-muted">Last updated {{post.published}} ago</small>
+    		</p>
+		</div>
+		</a>
+	</div>
+	{% endfor%}
+</div>
+{% endblock %}
