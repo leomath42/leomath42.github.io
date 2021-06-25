@@ -15,14 +15,14 @@ FLATPAGES_EXTENSION = '.md'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', index=pages.get("index"))
 
 
 @app.route('/<path>/')
 def post(path):
     page = path
     # return pages.get("foo")
-    return pages.get('foo').html
+    return pages.get('index').html
     # return render_template('post.html', page=page)
 
 
