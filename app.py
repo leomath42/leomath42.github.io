@@ -21,9 +21,7 @@ def index():
 @app.route('/<path>/')
 def post(path):
     page = path
-    # return pages.get("foo")
-    return pages.get('index').html
-    # return render_template('post.html', page=page)
+    return render_template('post.html', page=pages.get(page))
 
 
 if __name__ == '__main__':
