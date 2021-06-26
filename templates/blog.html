@@ -18,25 +18,43 @@
 		.card > a {
 			color: white;
 		}
+
+		div[id="posts"] > * {
+			display: none;
+		}
+
+		div[id="posts"] *:first-child {
+			display: block;
+		}
 	</style>
+	<script type="text/javascript">
+		console.log(`{{ n_page }}`);
+	</script>
 {% endblock %}
 
 {% block content %}
 <!-- {{ 	page }}
 {{ page.resumo  }} -->
 <div id="posts">
-	{% for post in posts %}
-	<div class="card mb-3">
-		<a href="{{post.path}}">
-		<div class="card-body">
-			<h4 class="card-title">{{post.title}}</h4>
-			<p class="card-text">{{post}}</p>
-    		<p class="card-text">
-    			<small class="text-muted">Last updated {{post.published}} ago</small>
-    		</p>
+	{% for page in range(1, n_page+1) %}
+		<div id="page-{{page}}">
+			{% for i in range(page_size)%}
+				{% if posts | length != 0 %} 
+					{% set post = posts.pop() %}
+					<div class="card mb-3">
+						<a href="{{post.path}}">
+						<div class="card-body">
+							<h4 class="card-title">{{post.title}}</h4>
+							<p class="card-text">{{post}}</p>
+				    		<p class="card-text">
+				    			<small class="text-muted">Last updated {{post.published}} ago</small>
+				    		</p>
+						</div>
+						</a>
+					</div>
+				{% endif%}
+			{% endfor %}
 		</div>
-		</a>
-	</div>
-	{% endfor%}
+	{% endfor %}
 </div>
 {% endblock %}
