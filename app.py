@@ -25,17 +25,18 @@ def index():
     return render_template('index.html', index=pages.get("index"))
 
 
+########
+posts = []
+# pages.reload()
+for page in set(pages):
+	if page.path.startswith('post'):
+		page.path = page.path[5:]
+		posts.append(page)
+########
+
 @app.route('/blog')
 def blog():
-	########
-	posts = []
-	# pages.reload()
-	for page in set(pages):
-		if page.path.startswith('post'):
-			page.path = page.path[5:]
-			posts.append(page)
-	########
-	page_size = 5 
+	page_size = 1 
 	n_post = len(posts)
 	n_page = (len(posts) // page_size)
 	n_page = n_page + 1 if (len(posts) / page_size) - n_page > 0 else n_page

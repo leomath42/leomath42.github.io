@@ -40,11 +40,12 @@
             </div>
        </nav>
     <div class="container">      
-        <main id="main" class="mt-5-rem">
+        <main id="main" class="mt-5-rem text-white">
           <div class="text-white">
               {% block content %}{% endblock %}
           </div>
         </main>
+    {% block script %}{% endblock %}
     </body>
 </html>
 

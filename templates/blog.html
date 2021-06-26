@@ -19,7 +19,7 @@
 			color: white;
 		}
 
-		div[id="posts"] > * {
+		div[id="posts"] > div {
 			display: none;
 		}
 
@@ -27,9 +27,6 @@
 			display: block;
 		}
 	</style>
-	<script type="text/javascript">
-		console.log(`{{ n_page }}`);
-	</script>
 {% endblock %}
 
 {% block content %}
@@ -56,5 +53,98 @@
 			{% endfor %}
 		</div>
 	{% endfor %}
+	<nav class="text-center" aria-label="...">
+	  <ul class="pagination d-inline-flex">
+	    <li class="page-item disabled">
+	      <span class="page-link">Previous</span>
+	    </li>
+	    <li class="page-item active">
+	    	<a class="page-link" href="#" value="page-1">1</a>
+	    	<span class="sr-only">(current)</span>
+	    </li>
+	    {% for page in range(2, n_page+1) %}
+	    	<li class="page-item">
+	    		<a class="page-link" href="#" value="page-{{page}}">{{page}}</a>
+	    	</li>
+	    {% endfor%}
+	    <li class="page-item">
+	      <a class="page-link" href="#">Next</a>
+	    </li>
+	  </ul>
+	</nav>
 </div>
 {% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	class Page {
+		// maxPage = 3;
+		actualPage = 1;
+
+		constructor(pages, items){
+			this.pages = pages;
+			this.items = items;
+			this.maxPage = items.length - 2 ;
+
+			items.forEach((item, index) => {
+				console.log(index);
+				if(index == 0 ){
+					item.addEventListener('click', (event) =>{
+						this.previousPage();
+					});
+				}
+				else if(index + 1 == items.length ){
+					item.addEventListener('click', (event) =>{
+						this.nextPage();
+					});
+				}
+				else {
+					item.addEventListener('click', (event) =>{
+						this.toPage(index);
+					});
+				}
+			});
+		}
+		toPage(number){
+			this.#changePage(number);
+			console.log(number);
+		};
+
+		previousPage(){
+			if(this.actualPage > 1){
+				this.actualPage-=1;
+				this.#changePage(number);
+				console.log(this.actualPage);
+			}
+
+		};
+		nextPage() {
+			if(this.actualPage < this.maxPage){
+				this.actualPage+=1;
+				this.#changePage(number);
+				console.log(this.actualPage);
+			}
+		};
+
+		#changePage(number) {
+			console.log("Number: " + number);
+			console.log("ActualPage: " + this.actualPage);
+			this.pages[this.actualPage - 1].style['display'] = 'none';
+			this.items[this.actualPage].classList.remove('active');
+
+			this.pages[number - 1].style['display'] = 'block';
+			this.items[number].classList.add('active');
+
+			this.actualPage = number;
+
+		};
+	};
+
+	pages = document.querySelectorAll("div[id='posts'] > div");
+	items = document.querySelectorAll(".page-item");
+
+	let page = new Page(pages, items);
+
+</script>
+{% endblock%}
+
