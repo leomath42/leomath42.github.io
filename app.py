@@ -2,6 +2,7 @@
 from flask import Flask
 from flask import url_for
 from flask import render_template
+from flask import Response
 from flask_frozen import Freezer
 from flask_flatpages import FlatPages
 from werkzeug.exceptions import NotFound
@@ -26,22 +27,27 @@ def index():
 
 
 ########
-posts = []
 # pages.reload()
-for page in set(pages):
-	if page.path.startswith('post'):
-		page.path = page.path[5:]
-		posts.append(page)
+def getPosts(pages):
+	posts = []
+	for page in list(pages).copy():
+		if page.path.startswith('post'):
+			page.path = page.path[5:]
+			posts.append(page)
+
+	return posts
 ########
 
-@app.route('/blog')
+@app.route('/blog/')
 def blog():
-	page_size = 1 
+	posts = getPosts(pages)	
+	# posts=list(pages).copy()
+	page_size = 4 
 	n_post = len(posts)
 	n_page = (len(posts) // page_size)
 	n_page = n_page + 1 if (len(posts) / page_size) - n_page > 0 else n_page
 
-	return render_template('blog.html', page=pages.get("blog"), posts=posts, n_page=n_page, page_size=page_size)
+	return Response(response=render_template('blog.html',page=pages.get("blog"), posts=posts, n_page=n_page, page_size=page_size), mimetype="html")
 
 @app.route('/<path:path>/')
 def post(path):

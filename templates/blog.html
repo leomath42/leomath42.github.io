@@ -1,8 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends "base.html" %}
 {% block title %}
 	{{page.title}}
 {% endblock %}
-
+s
 {% block head %}
 	{{ super() }}
 	<style type="text/css">
@@ -39,7 +41,7 @@
 				{% if posts | length != 0 %} 
 					{% set post = posts.pop() %}
 					<div class="card mb-3">
-						<a href="{{post.path}}">
+						<a href="{{url_for('post',path=post.path)}}">
 						<div class="card-body">
 							<h4 class="card-title">{{post.title}}</h4>
 							<p class="card-text">{{post}}</p>
@@ -162,4 +164,4 @@
 
 </script>
 {% endblock%}
-
+</html>
