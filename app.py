@@ -23,7 +23,7 @@ freezer = Freezer(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html', index=pages.get("index"))
+    return render_template('index.html', page=pages.get("index"))
 
 
 ########

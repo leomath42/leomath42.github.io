@@ -4,31 +4,9 @@
 {% block title %}
 	{{page.title}}
 {% endblock %}
-s
+
 {% block head %}
 	{{ super() }}
-	<style type="text/css">
-		.card{
-			background: #223b55!important;
-		}
-
-		.card > a:hover {
-		    color: unset;
-		    text-decoration: none;
-		    background: #ef7b8e;
-		}
-		.card > a {
-			color: white;
-		}
-
-		div[id="posts"] > div {
-			display: none;
-		}
-
-		div[id="posts"] *:first-child {
-			display: block;
-		}
-	</style>
 {% endblock %}
 
 {% block content %}
@@ -79,83 +57,6 @@ s
 
 {% block script %}
 <script type="text/javascript">
-	class Page {
-		// maxPage = 3;
-		actualPage = 1;
-
-		constructor(pages, items){
-			this.pages = pages;
-			this.items = items;
-			this.maxPage = items.length - 2 ;
-
-			items.forEach((item, index) => {
-				console.log(index);
-				if(index == 0 ){
-					item.addEventListener('click', (event) =>{
-						this.previousPage();
-					});
-				}
-				else if(index + 1 == items.length ){
-					item.addEventListener('click', (event) =>{
-						this.nextPage();
-					});
-				}
-				else {
-					item.addEventListener('click', (event) =>{
-						this.toPage(index);
-					});
-				}
-			});
-		}
-		toPage(number){
-			this.#changePage(number);
-			console.log(number);
-		};
-
-		previousPage(){
-			if(this.actualPage > 1){
-				this.#changePage(this.actualPage - 1);
-			}
-
-		};
-		nextPage() {
-			if(this.actualPage < this.maxPage){
-				this.#changePage(this.actualPage + 1);
-			}
-
-		};
-
-		#changePage(number) {
-			console.log("Number: " + number);
-			console.log("OldPage: " + this.actualPage);
-			this.pages[this.actualPage - 1].style['display'] = 'none';
-			this.items[this.actualPage].classList.remove('active');
-
-			this.pages[number - 1].style['display'] = 'block';
-			this.items[number].classList.add('active');
-
-			this.actualPage = number;
-
-			if(1 < this.actualPage && this.actualPage <  this.maxPage){
-				console.log("wharever ->");
-				this.items[0].classList.remove('disabled');
-				this.items[this.maxPage + 1].classList.remove('disabled');
-			}
-			else if(1 == this.actualPage){
-				console.log("min ->");
-				this.items[0].classList.add('disabled');
-				this.items[this.maxPage + 1].classList.remove('disabled');
-			}
-			else if(this.maxPage == this.actualPage){
-				console.log("max ->");
-				this.items[this.maxPage + 1].classList.add('disabled');
-				this.items[0].classList.remove('disabled');
-			}
-
-			console.log("ActualPage: " + this.actualPage);
-
-		};
-	};
 
 	pages = document.querySelectorAll("div[id='posts'] > div");
 	items = document.querySelectorAll(".page-item");
