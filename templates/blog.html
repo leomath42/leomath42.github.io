@@ -112,23 +112,20 @@
 
 		previousPage(){
 			if(this.actualPage > 1){
-				this.actualPage-=1;
-				this.#changePage(number);
-				console.log(this.actualPage);
+				this.#changePage(this.actualPage - 1);
 			}
 
 		};
 		nextPage() {
 			if(this.actualPage < this.maxPage){
-				this.actualPage+=1;
-				this.#changePage(number);
-				console.log(this.actualPage);
+				this.#changePage(this.actualPage + 1);
 			}
+
 		};
 
 		#changePage(number) {
 			console.log("Number: " + number);
-			console.log("ActualPage: " + this.actualPage);
+			console.log("OldPage: " + this.actualPage);
 			this.pages[this.actualPage - 1].style['display'] = 'none';
 			this.items[this.actualPage].classList.remove('active');
 
@@ -136,6 +133,24 @@
 			this.items[number].classList.add('active');
 
 			this.actualPage = number;
+
+			if(1 < this.actualPage && this.actualPage <  this.maxPage){
+				console.log("wharever ->");
+				this.items[0].classList.remove('disabled');
+				this.items[this.maxPage + 1].classList.remove('disabled');
+			}
+			else if(1 == this.actualPage){
+				console.log("min ->");
+				this.items[0].classList.add('disabled');
+				this.items[this.maxPage + 1].classList.remove('disabled');
+			}
+			else if(this.maxPage == this.actualPage){
+				console.log("max ->");
+				this.items[this.maxPage + 1].classList.add('disabled');
+				this.items[0].classList.remove('disabled');
+			}
+
+			console.log("ActualPage: " + this.actualPage);
 
 		};
 	};
