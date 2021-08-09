@@ -24,7 +24,7 @@
     <title>{% block title %}{% endblock %} - Frozen-Blog</title>
   </head>
    <body class="vsc-initialized">
-       <nav class="navbar navbar-expand navbar-dark bg-dark">  
+       <nav class="navbar navbar-expand navbar-dark bg-navbar">  
             <div class="container-fluid" style="width: 576px;">
                 <a class="navbar-brand" href="{{url_for('index')}}">Home</a>
                 <ul class="navbar-nav">
@@ -32,7 +32,7 @@
                           <a class="nav-link" href="{{url_for('blog')}}">Blog</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Projects</a>
+                          <a class="nav-link" href="{{url_for('project')}}">Projects</a>
                       </li>
                   </ul>
             </div>

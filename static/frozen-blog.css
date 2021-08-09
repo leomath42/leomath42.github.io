@@ -1,11 +1,19 @@
 /* GLOBAL CSS STYLE */
+:root{
+    --hover-color: #527292;/*#ef7b8e;*/
+    --primary-color:#223b55;
+    --secundary-color:#354b61;
+}
+
+
 
 body { 
-    background: #354b61;
+    background: var(--secundary-color);
     font-family: Ubuntu;
 }
-.bg-dark {
-    background: #2f4459!important;
+
+.bg-navbar {
+    background: var(--primary-color)!important;
 }
 .main {
     max-width: 720px;
@@ -19,13 +27,13 @@ body {
 /* BLOG PAGE CSS STYLE */
 
 .card{
-    background: #223b55!important;
+    background: var(--primary-color)!important;
 }
 
 .card > a:hover {
     color: unset;
     text-decoration: none;
-    background: #ef7b8e;
+    background: var(--hover-color);
 }
 .card > a {
     color: white;
@@ -37,4 +45,25 @@ div[id="posts"] > div {
 
 div[id="posts"] *:first-child {
     display: block;
+}
+
+.page-link{
+    background-color:#2c4661c2!;
+}
+
+.page-item.active .page-link{
+    border-color: var(--hover-color);
+}
+
+.page-link {
+    background-color: #2c4661c2!important;
+    color:#ffffff;
+}
+
+.page-item.disabled .page-link{
+    background-color: #41556b!important;
+}
+
+a.page-link:hover {
+    color: var(--hover-color);
 }

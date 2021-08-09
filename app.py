@@ -49,6 +49,10 @@ def blog():
 
 	return Response(response=render_template('blog.html',page=pages.get("blog"), posts=posts, n_page=n_page, page_size=page_size), mimetype="html")
 
+@app.route('/project/')
+def project():
+    return render_template('project.html', page=pages.get("project")) 
+
 @app.route('/<path:path>/')
 def post(path):
     page = path
