@@ -17,6 +17,7 @@ app.config.from_pyfile('config.cfg')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['FLASK_DEBUG'] = 1
 app.config['FREEZER_RELATIVE_URLS']= False#True
+app.config['FREEZER_DESTINATION_IGNORE'] = ['.git*']
 pages = FlatPages(app)
 
 FLATPAGES_EXTENSION = '.md'
