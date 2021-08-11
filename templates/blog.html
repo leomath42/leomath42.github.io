@@ -22,9 +22,9 @@
 						<a href="{{url_for('post',path=post.path)}}">
 						<div class="card-body">
 							<h4 class="card-title">{{post.title}}</h4>
-							<p class="card-text">{{post}}</p>
+                                <p class="card-text">{{markup(post.body|truncate(300))}}</p>
 				    		<p class="card-text">
-				    			<small class="text-muted">Last updated {{post.published}} ago</small>
+				    			<small class="text-muted">last updated {{post.published}} ago</small>
 				    		</p>
 						</div>
 						</a>
@@ -36,7 +36,7 @@
 	<nav class="text-center" aria-label="...">
 	  <ul class="pagination d-inline-flex">
 	    <li class="page-item disabled">
-	      <span class="page-link">Previous</span>
+	      <span class="page-link">previous</span>
 	    </li>
 	    <li class="page-item active">
 	    	<a class="page-link" href="#" value="page-1">1</a>
@@ -48,7 +48,7 @@
 	    	</li>
 	    {% endfor%}
 	    <li class="page-item">
-	      <a class="page-link" href="#">Next</a>
+	      <a class="page-link" href="#">next</a>
 	    </li>
 	  </ul>
 	</nav>
