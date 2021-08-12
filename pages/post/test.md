@@ -1,4 +1,4 @@
-title: a long test post title
+title: A long test post title
 published: 2010-12-22
 description: |
     **a long description,**
