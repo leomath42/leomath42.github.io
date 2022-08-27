@@ -1,0 +1,7 @@
+env/
+.*
+build/
+_*
+static/bootstrap-5.0.0-dist
+*~
+*.pyc
