@@ -8,7 +8,6 @@ class Page {
 		this.maxPage = items.length - 2 ;
 
 		items.forEach((item, index) => {
-			console.log(index);
 			if(index == 0 ){
 				item.addEventListener('click', (event) =>{
 					this.previousPage();
@@ -28,7 +27,6 @@ class Page {
 	}
 	toPage(number){
 		this.#changePage(number);
-		console.log(number);
 	};
 
 	previousPage(){

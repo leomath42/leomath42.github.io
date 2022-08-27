@@ -67,3 +67,22 @@ div[id="posts"] *:first-child {
 a.page-link:hover {
     color: var(--hover-color);
 }
+
+.codehilite{
+    padding: 10px 0px 0px 10px;
+    border-radius: 10px;
+}
+
+pre {
+    color: wheat !important;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
+strong {
+    color: orange;
+}
