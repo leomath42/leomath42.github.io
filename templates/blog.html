@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}
+	{{page.title}}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+{% endblock %}
+
+{% block content %}
+<!-- {{ 	page }}
+{{ page.resumo  }} -->
+<div id="posts">
+	{% for page in range(1, n_page+1) %}
+		<div id="page-{{page}}">
+			{% for i in range(page_size)%}
+				{% if posts | length != 0 %} 
+					{% set post = posts.pop() %}
+					<div class="card mb-3">
+						<a href="{{url_for('post',path=post.path)}}">
+						<div class="card-body">
+							<h4 class="card-title">{{post.title}}</h4>
+							<p class="card-text">{{post.description | safe }}</p>
+							<!-- <p class="card-text">{{markup(post.body|truncate(300))}}</p> -->
+				    		<p class="card-text">
+				    			<small class="text-muted">Last updated {{post.published}} ago</small>
+				    		</p>
+						</div>
+						</a>
+					</div>
+				{% endif%}
+			{% endfor %}
+		</div>
+	{% endfor %}
+	<nav class="text-center" aria-label="...">
+	  <ul class="pagination d-inline-flex">
+	    <li class="page-item disabled">
+	      <span class="page-link">Previous</span>
+	    </li>
+	    <li class="page-item active">
+	    	<a class="page-link" href="#" value="page-1">1</a>
+	    	<span class="sr-only">(current)</span>
+	    </li>
+	    {% for page in range(2, n_page+1) %}
+	    	<li class="page-item">
+	    		<a class="page-link" href="#" value="page-{{page}}">{{page}}</a>
+	    	</li>
+	    {% endfor%}
+	    <li class="page-item">
+	      <a class="page-link" href="#">Next</a>
+	    </li>
+	  </ul>
+	</nav>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+	pages = document.querySelectorAll("div[id='posts'] > div");
+	items = document.querySelectorAll(".page-item");
+
+	let page = new Page(pages, items);
+
+</script>
+{% endblock%}
+</html>

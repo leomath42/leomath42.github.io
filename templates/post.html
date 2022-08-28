@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+	{{page.title}}
+{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<style type="text/css">
+		
+		.test{
+			background:black;
+		}
+		
+	</style>
+{% endblock %}
+
+{% block content %}
+	{{ page }}
+{% endblock %}
