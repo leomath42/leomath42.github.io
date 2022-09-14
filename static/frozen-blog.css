@@ -5,8 +5,6 @@
     --secundary-color:#354b61;
 }
 
-
-
 body { 
     background: var(--secundary-color);
     font-family: Ubuntu;
@@ -85,4 +83,8 @@ img {
 
 strong {
     color: orange;
+}
+
+#disqus_thread {
+    margin-top: 200px;
 }
